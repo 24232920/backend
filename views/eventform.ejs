@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
     <header class="main-header">
         <div class="container">
             <div class="title">
@@ -17,7 +18,8 @@
 
             <nav class="main-nav">
                 <ul>
-                    <li></li><li></li>
+                    <li></li>
+                    <li></li>
                     <li><a href="/">Home</a></li>
                     <li><a href="/events">Events</a></li>
                     <li><a href="/venues">Venues</a></li>
@@ -27,41 +29,112 @@
     </header>
 
     <main>
-        <form action="/event/add" method="POST">
-            <div class="contianer" mb-10>
-                <div class="mb-3">
-                    <label for="eventTitle" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="eventTitle" name="eventTitle" required>
-                </div>
-                <div class="mb-3">
-                    <label for="eventDescription" class="form-label">Description</label>
-                    <input type="text" class="form-control" id="eventDescription" name="eventDescription">
-                </div>
-                <div class="mb-3">
-                    <label for="eventCategory" class="form-label">Category</label>
-                    <select type="form-select" aria-label="Default select example" id="eventCategory" name="eventCategory" onchange="categorySelected(this.value)" required>
-                        <option value="" selected>Select a category</option>
-                        <option value="workshop">Workshop</option>
-                        <option value="seminar">Seminar</option>
-                        <option value="Competition">Competition</option>
-                        <option value="Career Event">Career Event</option>
-                        <option value="Social Event">Social Event</option>
-                        <option value="Conference">Conference</option>
-                        <option value="Lecture">Lecture</option>
-                        <option value="Exhibition">Exhibition</option>
-                        <option value="Cultural">Cultural</option>
-                        <option value="Sports">Sports</option>
-                        <option value="Volunteer">Volunteer</option>
-                        <option value="Networking">Networking</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="eventDate" class="form-label">Date & Time</label>
-                    <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
-                </div>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-                <button type="submit" class="btn btn-primary">Save Event</button>
+        <div class="container" mb-10>
+            <h1 class="form-title">Create New Event</h1>
+
+            <!-- =================== Event Form =================== -->
+            <div class="form-container">
+                <form action="/event/add" method="POST">
+
+                    <div class="form-group.full-width">
+                        <label for="eventTitle" class="col-sm-2 col-form-label">Title<span
+                                class="required">*</span></label>
+                        <input type="text" class="form-control" id="eventTitle" name="eventTitle" required>
+                        <br>
+                    </div>
+
+                    <div class="form-group.full-width">
+                        <label for="eventDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="eventDescription" name="eventDescription"></textarea>
+                        <br>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Category<span class="required">*</span></label>
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Default select example" name="category"
+                                    onchange="categorySelected(this.value)">
+                                    <option value="" selected>Select a category</option>
+                                    <option value="workshop">Workshop</option>
+                                    <option value="seminar">Seminar</option>
+                                    <option value="Competition">Competition</option>
+                                    <option value="Career Event">Career Event</option>
+                                    <option value="Social Event">Social Event</option>
+                                    <option value="Conference">Conference</option>
+                                    <option value="Lecture">Lecture</option>
+                                    <option value="Exhibition">Exhibition</option>
+                                    <option value="Cultural">Cultural</option>
+                                    <option value="Sports">Sports</option>
+                                    <option value="Volunteer">Volunteer</option>
+                                    <option value="Networking">Networking</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventDate" class="col-sm-5 col-form-label">Date & Time<span
+                                    class="required">*</span></label>
+                            <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="speaker" class="col-sm-2 col-form-label">Speaker/Organizer</label>
+                            <input type="text" class="form-control" id="speaker" name="speaker" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventCapacity" class="col-sm-2 col-form-label">Capacity<span
+                                    class="required">*</span></label>
+                            <input type="number" class="form-control" id="eventCapacity" name="eventCapacity" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="eventVenue" class="col-sm-2 col-form-label">Venue</label>
+                            <input type="text" class="form-control" id="eventVenue" name="eventVenue" required>
+                            <br>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 col-form-label">Status<span class="required">*</span></label>
+                            <div class="form-group">
+                                <select class="form-select" aria-label="Default select example" name="status"
+                                    onchange="statusSelected(this.value)">
+                                    <option value="upcoming">Upcoming</option>
+                                    <option value="in-progress">Ongoing</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group.full-width">
+                        <label for="eventBanner" class="col-sm-5 col-form-label">Banner Image URL</label>
+                        <input type="url" class="form-control" id="eventBanner" name="eventBanner" required>
+                        <br>
+                    </div>
+
+                    <div class="form-group.full-width">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="highlights" id="gridCheck1"
+                                value="on">
+                            <label class="form-check-label" for="gridCheck1">
+                                Highlight on Homepage Carousel
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Event</button>
+                        <button type="button" class="btn btn-secondary"><a href="/events">Cancel</a></button>
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </main>
 </body>
+
+</html>

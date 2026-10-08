@@ -7,18 +7,28 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET Event Form. */
+router.get('/event/add', function(req, res, next) {
+  res.render('eventform', { title: 'Express' });
+});
+
+/* GET Venue Form. */
+router.get('/venue/add', function(req, res, next) {
+  res.render('venueform', { title: 'Express' });
+});
+
 /* Handle Event Form */
 router.post('/event/add', async function(req, res, next) {
   const db = await connectToDB();
-  try{
-    req.body.eventTitle = req.body.eventTitle.trim();
-    req.body.eventDescription = req.body.eventDescription.trim();
-    req.body.eventDate = new Date(req.body.eventDate);
-    const result = await db.collection('events').insertOne(req.body);
-    res.status(200).json({ message: 'Event added successfully', eventId: result.insertedId });
-  } catch (error) {
-    console.error('Error adding event:', error);
-    res.status(500).json({ message: 'Error adding event' });
+  try {
+    req.body.numTickets = parseInt(req.body.numTickets);
+    req.body.terms = req.body.terms? true : false;
+    req.body.created_at = new Date();
+
+    let result = await db.collection("events").insertOne(req.body);
+    res.status(201).json({ id: result.insertedId });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
@@ -28,6 +38,17 @@ router.get('/events', async function (req, res) {
     try {
         let results = await db.collection("events").find().toArray();
         res.render('events', { events: results });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+/* Display all Venues */
+router.get('/venues', async function (req, res) {
+    const db = await connectToDB();
+    try {
+        let results = await db.collection("venues").find().toArray();
+        res.render('venues', { venues: results });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
