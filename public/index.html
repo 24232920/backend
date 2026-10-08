@@ -8,8 +8,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 
     <style>
         :root {
@@ -92,30 +90,69 @@
             color: white;
         }
 
-        /* --- 6. Responsive Design --- */
-        @media (max-width: 992px) {
-            .events-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        /* --- 3. Highlighted Section --- */
+        .highlight {
+            margin: 20px 40px;
+            position: center;
+            height: 450px;
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            outline: 2px solid rgb(156, 156, 156);
         }
 
-        @media (max-width: 768px) {
-            .main-header .container {
-                flex-direction: column;
-                gap: 15px;
-            }
+        .highlight-overlay {
+            transform: translateY(+20%);
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px 60px;
+            text-align: center;
+            border-radius: 8px;
+        }
 
-            .highlight h1 {
-                font-size: 2rem;
-            }
+        .highlight h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
 
-            .highlight-overlay {
-                padding: 30px;
-            }
+        .highlight p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #e9ecef;
+        }
 
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
+        .highlight-button {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .highlight-button:hover {
+            background-color: #0056b3;
+        }
+
+        .highlight-nav {
+            margin: 20px 40px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-240%);
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .highlight-nav.left {
+            left: 20px;
+        }
+
+        .highlight-nav.right {
+            right: 20px;
         }
     </style>
 </head>
@@ -138,4 +175,20 @@
                 </ul>
             </nav>
         </div>
+    </header>
+
+    <main>
+        <!-- ======================= highlight Section ======================= -->
+        <section class="highlight">
+            <div class="highlight-overlay">
+                <h1>Global Climate Summit</h1>
+                <p>Nov 1, 2026, 10:00 AM - Grand Science Hall</p>
+                <a href="#" class="highlight-button">View Details</a>
+            </div>
+                <div class="highlight-nav left"><</div>
+                <div class="highlight-nav right">></div>
+        </section>
+    </main>
+
+
 </body>
