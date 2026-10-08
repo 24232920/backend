@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SciFac Events</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="title">
+                <h1 class="title">SciFac Events</h1>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/venues">Venues</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container" mb-10>
+            <div class="title">
+                <h1 class="title">All Events</h1>
+                <button type="submit" class="create-btn">Create Event</button>
+            </div>
+        </div>
+
+        <!-- ======================= Events Grid Section ======================= -->
+        <div class="events-grid">
+            <% for (var event of events) { %>
+                <div class="event-card">
+                    <div class="card-top">
+                        <span class="tag upcoming-tag">Upcoming</span>
+                        <span class="tag type-tag conference-tag">Conference</span>
+                    </div>
+                    <h2>Annual Tech Conference 2026</h2>
+                    <p class="event-info"><i class="fa-regular fa-calendar"></i> Oct 15, 2026, 9:00 AM</p>
+                    <p class="event-info"><i class="fa-solid fa-location-dot"></i> Grand Science Hall</p>
+                    <div class="card-actions">
+                        <a href="#" class="view-btn">View</a>
+                        <a href="#" class="icon-btn"><i class="fa-solid fa-pencil"></i></a>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+
+    </main>
+
+
+
+
+
+</body>
+
+</html>

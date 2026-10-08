@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SciFac Events</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="title">
+                <h1 class="title">SciFac Events</h1>
+            </div>
+
+            <nav class="main-nav">
+                <ul>
+                    <li></li><li></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/events">Events</a></li>
+                    <li><a href="/venues">Venues</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <form action="/event/add" method="POST">
+            <div class="contianer" mb-10>
+                <div class="mb-3">
+                    <label for="eventTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="eventTitle" name="eventTitle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="eventDescription" class="form-label">Description</label>
+                    <input type="text" class="form-control" id="eventDescription" name="eventDescription">
+                </div>
+                <div class="mb-3">
+                    <label for="eventCategory" class="form-label">Category</label>
+                    <select type="form-select" aria-label="Default select example" id="eventCategory" name="eventCategory" onchange="categorySelected(this.value)" required>
+                        <option value="" selected>Select a category</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="seminar">Seminar</option>
+                        <option value="Competition">Competition</option>
+                        <option value="Career Event">Career Event</option>
+                        <option value="Social Event">Social Event</option>
+                        <option value="Conference">Conference</option>
+                        <option value="Lecture">Lecture</option>
+                        <option value="Exhibition">Exhibition</option>
+                        <option value="Cultural">Cultural</option>
+                        <option value="Sports">Sports</option>
+                        <option value="Volunteer">Volunteer</option>
+                        <option value="Networking">Networking</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="eventDate" class="form-label">Date & Time</label>
+                    <input type="datetime-local" class="form-control" id="eventDate" name="eventDate" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Event</button>
+            </div>
+        </form>
+    </main>
+</body>
