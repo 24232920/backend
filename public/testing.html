@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SciFac Events</title>
+
+    <!-- Google Fonts for 'Inter' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. General & Reset Styles --- */
+        :root {
+            --primary-blue: #007bff;
+            --dark-grey: #212529;
+            --light-grey-bg: #f8f9fa;
+            --text-color: #333;
+            --text-muted: #6c757d;
+            --card-border: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-grey-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 20px;
+            padding: 0 20px;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 2. Header / Navigation --- */
+        .main-header {
+            background-color: var(--dark-grey);
+            padding: 15px 0;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i {
+            color: var(--primary-blue);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .main-nav a {
+            color: #e9ecef;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: white;
+        }
+
+        /* --- 3. Highlighted Section --- */
+        .highlight {
+            position: center;
+            height: 450px;
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .highlight-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 40px 60px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .highlight h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .highlight p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            color: #e9ecef;
+        }
+
+        .highlight-button {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .highlight-button:hover {
+            background-color: #0056b3;
+        }
+
+        .highlight-nav {
+            position: center;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .highlight-nav.left {
+            left: 20px;
+        }
+
+        .highlight-nav.right {
+            right: 20px;
+        }
+
+        /* --- 4. Events Section --- */
+        .events-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1d3557;
+        }
+
+        .section-title i {
+            color: var(--primary-blue);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        /* --- 5. Event Card --- */
+        .event-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-tag {
+            align-self: flex-start;
+            background-color: #e9ecef;
+            color: var(--text-muted);
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .card-details-button {
+            margin-top: auto;
+            /* Pushes button to the bottom */
+            text-align: center;
+            padding: 10px;
+            border: 1px solid var(--card-border);
+            border-radius: 5px;
+            color: var(--primary-blue);
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .card-details-button:hover {
+            background-color: var(--primary-blue);
+            color: white;
+        }
+
+        /* --- 6. Responsive Design --- */
+        @media (max-width: 992px) {
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .highlight h1 {
+                font-size: 2rem;
+            }
+
+            .highlight-overlay {
+                padding: 30px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- =========== Header =========== -->
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-flask-vial">
+                    Scifac Events
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Venues</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- ======================= highlight Section ======================= -->
+        <section class="highlight">
+            <div class="highlight-overlay">
+                <h1>Global Climate Summit</h1>
+                <p>Nov 1, 2026, 10:00 AM - Grand Science Hall</p>
+                <a href="#" class="highlight-button">View Details</a>
+            </div>
+            <div class="highlight-nav left"><i class="fa-solid fa-chevron-left"></i></div>
+            <div class="highlight-nav right"><i class="fa-solid fa-chevron-right"></i></div>
+        </section>
+    </main>
+
+</body>
+
+
+</html>
